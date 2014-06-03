@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link rel="stylesheet" href="../css/pmag.css" type="text/css" />
+</head>
+<body>
+<div id="header_wrap">
+   <h1><a href="https://www.facebook.com/groups/programmerMagazine">程式人雜誌</a> <sub> --  <a href="https://dl.dropbox.com/u/101584453/pmag/201403/htm/home.html">2014 年 6 月號</a> (開放公益出版品)</sub></h1>
+</div>
+<div id="content">
+<div id="TOC">
+<ul>
+<li><a href="#visual-basic-6.0實作簡易小算盤-作者廖憲得-0xde">Visual Basic 6.0:實作簡易小算盤 (作者：廖憲得 0xde)</a></li>
+</ul>
+</div>
+<h2 id="visual-basic-6.0實作簡易小算盤-作者廖憲得-0xde"><a href="#visual-basic-6.0實作簡易小算盤-作者廖憲得-0xde">Visual Basic 6.0:實作簡易小算盤 (作者：廖憲得 0xde)</a></h2>
+<div class="figure">
+<img src="../img/vb1.jpg" />
+</div>
+<pre class="sourceCode MonoBasic"><code class="sourceCode monobasic"><span class="kw">Dim</span> NumberTemp, Temp, S
+<span class="kw">Private</span> <span class="kw">Sub </span>Command1_Click(Index <span class="kw">As</span> <span class="dt">Integer</span>)
+    <span class="kw">Select Case Command1(Index).Caption</span>
+        Case 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+            <span class="kw">If </span>Temp &lt;&gt; <span class="st">&quot;&quot;</span> <span class="kw">And</span> S <span class="kw">Then</span> S = <span class="kw">False</span>: Text1.Text = 0
+            Text1.Text = Val(Text1.Text &amp; Command1(Index).Caption) <span class="co">&#39; 是數值就 And 完後 Val</span>
+        Case <span class="st">&quot;+/-&quot;</span>
+            Text1.Text = -Text1.Text <span class="co">&#39; * -1 等於 補負號</span>
+        Case <span class="st">&quot;.&quot;</span>
+            <span class="kw">If </span>InStr(Text1, <span class="st">&quot;.&quot;</span>) = 0 <span class="kw">Then</span> Text1.Text = Text1.Text &amp; <span class="st">&quot;.&quot;</span> <span class="co">&#39; 判斷沒有點的話在加一個點</span>
+        Case <span class="st">&quot;Log&quot;</span>
+            <span class="kw">If </span>Val(Text1.Text) &gt; 0 <span class="kw">Then</span> Text1.Text = Log(Val(Text1.Text)) / Log(10) <span class="co">&#39; VB6 的 Log 公式為 Log(數值) / Log(N) N = 底數</span>
+        Case <span class="st">&quot;AC&quot;</span>
+            Text1.Text = 0 <span class="co">&#39; 將顯示歸零</span>
+            Temp = <span class="st">&quot;&quot;</span> <span class="co">&#39; 運算暫存清空</span>
+        Case <span class="st">&quot;Sqr&quot;</span>
+            Text1.Text = Sqr(Text1) <span class="co">&#39; 開根號的函數為 Sqr (數值)</span>
+        Case <span class="st">&quot;1/x&quot;</span>
+            Text1.Text = 1 / Text1.Text <span class="co">&#39; 倒數</span>
+        Case <span class="st">&quot;N!&quot;</span>
+            Text1.Text = N(Text1.Text) <span class="co">&#39; 呼叫階乘副程式</span>
+        Case <span class="st">&quot;Int&quot;</span>
+            Text1.Text = Int(Text1.Text)  <span class="co">&#39; 取整數</span>
+        Case <span class="st">&quot;+&quot;</span>, <span class="st">&quot;-&quot;</span>, <span class="st">&quot;*&quot;</span>, <span class="st">&quot;/&quot;</span>, <span class="st">&quot;And&quot;</span>, <span class="st">&quot;Xor&quot;</span>, <span class="st">&quot;Or&quot;</span>, <span class="st">&quot;Not&quot;</span>
+            S = <span class="kw">True</span>
+            <span class="kw">If </span>Temp = <span class="st">&quot;&quot;</span> <span class="kw">Then</span> <span class="co">&#39; 當運算元為空時</span>
+                Temp = Command1(Index).Caption <span class="co">&#39; 紀錄運算元</span>
+                NumberTemp = Text1.Text <span class="co">&#39; 紀錄運算子</span>
+            <span class="kw">Else</span>
+                <span class="kw">Call</span> Change(Temp) <span class="co">&#39; 運算</span>
+                Temp = Command1(Index).Caption <span class="co">&#39; 紀錄運算元</span>
+                NumberTemp = Text1.Text <span class="co">&#39; 紀錄運算子</span>
+            <span class="kw">End If</span>
+
+        Case <span class="st">&quot;=&quot;</span>
+                <span class="kw">Call</span> Change(Temp) <span class="co">&#39; 運算</span>
+                NumberTemp = Text1.Text <span class="co">&#39; 紀錄運算子</span>
+    <span class="kw">End Select</span>
+<span class="kw">End Sub</span>
+
+<span class="kw">Function </span>Change(N) <span class="co">&#39; 運算</span>
+   <span class="kw">If </span>N &lt;&gt; <span class="st">&quot;&quot;</span> <span class="kw">Then</span>
+        <span class="kw">Select Case N</span>
+            Case <span class="st">&quot;+&quot;</span>
+                Text1.Text = NumberTemp + Val(Text1.Text)
+            Case <span class="st">&quot;-&quot;</span>
+                Text1.Text = NumberTemp - Val(Text1.Text)
+            Case <span class="st">&quot;*&quot;</span>
+                Text1.Text = NumberTemp * Val(Text1.Text)
+            Case <span class="st">&quot;/&quot;</span>
+                Text1.Text = NumberTemp / Val(Text1.Text)
+            Case <span class="st">&quot;Or&quot;</span>
+                Text1.Text = NumberTemp <span class="kw">Or</span> Val(Text1.Text)
+            Case <span class="st">&quot;And&quot;</span>
+                Text1.Text = NumberTemp <span class="kw">And</span> Val(Text1.Text)
+            Case <span class="st">&quot;Xor&quot;</span>
+                Text1.Text = NumberTemp <span class="kw">Xor</span> Val(Text1.Text)
+            Case <span class="st">&quot;Not&quot;</span>
+                Text1.Text = <span class="kw">Not</span> NumberTemp
+        <span class="kw">End Select</span>
+    <span class="kw">End If</span>
+<span class="kw">End Function</span>
+<span class="kw">Function </span>N(Inp) <span class="co">&#39; 階乘副程式</span>
+    <span class="kw">If </span>Inp = 1 <span class="kw">Then</span>
+        N = 1
+    <span class="kw">Else</span>
+        N = Inp * N(Inp - 1)
+    <span class="kw">End If</span>
+<span class="kw">End Function</span></code></pre>
+<ul>
+<li>原始碼下載： <a href="http://files.dotblogs.com.tw/0xde/1311/2013117191823675.rar">實作簡易小算盤.rar</a></li>
+</ul>
+<p>【本文作者為「廖憲得」，原文網址為： <a href="http://www.dotblogs.com.tw/0xde/archive/2013/11/07/127248.aspx">http://www.dotblogs.com.tw/0xde/archive/2013/11/07/127248.aspx</a> ，由陳鍾誠編輯後納入本雜誌】</p>
+</div>
+<div id="footer">
+<a href="https://www.facebook.com/groups/programmerMagazine/">程式人雜誌</a> ，採用 <a href="http://creativecommons.org/licenses/by-sa/3.0/tw/ ">創作共用：姓名標示、相同方式分享</a> 授權，歡迎加入 <a href="https://www.facebook.com/groups/programmerMagazine/">雜誌社團</a>
+</div>
+</body>
+</html>

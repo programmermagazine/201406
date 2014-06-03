@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../css/pmag.css" type="text/css" />
+</head>
+<body>
+<div id="header_wrap">
+   <h1><a href="https://www.facebook.com/groups/programmerMagazine">程式人雜誌</a> <sub> --  <a href="https://dl.dropbox.com/u/101584453/pmag/201403/htm/home.html">2014 年 6 月號</a> (開放公益出版品)</sub></h1>
+</div>
+<div id="content">
+<div id="TOC">
+<ul>
+<li><a href="#從-rs-232-偷電的方法-作者bridan">從 RS-232 偷電的方法 (作者：Bridan)</a></li>
+</ul>
+</div>
+<h2 id="從-rs-232-偷電的方法-作者bridan"><a href="#從-rs-232-偷電的方法-作者bridan">從 RS-232 偷電的方法 (作者：Bridan)</a></h2>
+<p><a href="https://zh.wikipedia.org/wiki/RS232">RS-232</a> 是一個很古老的通訊界面，寫 <a href="http://4rdp.blogspot.tw/2008/03/blog-post_24.html">韌體</a> 的工程師只要有弄過通訊，一定知道它，現在只剩桌上型電腦可以找到這樣的介面，今天就分享如何從電腦 RS-232 介面偷電。</p>
+<div class="figure">
+<img src="../img/RS-232%20power.jpg" />
+</div>
+<p>圖中所有二極體是 1N4148，所有電阻都是 1 kΩ，這電路只能提供小電源。</p>
+<p>RS-232 雖然在電腦介面已經被 USB 取代，不過它的非同步通訊 <a href="https://zh.wikipedia.org/wiki/UART">UART</a> 仍被各類 MCU 保留，它只需 TX、RX 兩隻腳就可以傳送與接收，像 <a href="http://4rdp.blogspot.tw/search/label/LEGO%20MINDSTORMS%20NXT">NXT</a> 的藍芽模組就是利用 UART 與 MCU 通訊。</p>
+<p>(本文來自「研發養成所」 Bridan 的網誌，原文網址為 <a href="http://4rdp.blogspot.tw/2014/01/rs-232-power.html">http://4rdp.blogspot.tw/2014/01/rs-232-power.html</a> ，由陳鍾誠編輯後納入程式人雜誌)</p>
+</div>
+<div id="footer">
+<a href="https://www.facebook.com/groups/programmerMagazine/">程式人雜誌</a> ，採用 <a href="http://creativecommons.org/licenses/by-sa/3.0/tw/ ">創作共用：姓名標示、相同方式分享</a> 授權，歡迎加入 <a href="https://www.facebook.com/groups/programmerMagazine/">雜誌社團</a>
+</div>
+</body>
+</html>
